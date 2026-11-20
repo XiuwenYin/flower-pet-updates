@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261120.2357",
+  "version": "20261121.0010",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "5f3b7a454f1fc694d73f05c6d60a3c8c0ac68e581bb39cc0576035c0b13d2340",
-    "size": 76200
+    "sha256": "c76a0894721242c969dfec9cd93ea914bbd8ea97af541189ee8e9b0e821b8e51",
+    "size": 77499
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -1134,12 +1134,12 @@
   }
  },
  "shell": {
-  "version": "0.2.0",
-  "notes": "素材改用 WebP，体积小很多；更省电；农历节日自动推算；长按谢了的花可以换新的；支持 Intel Mac 和 Windows",
+  "version": "0.3.0",
+  "notes": "",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.2.0/flower-pet-0.2.0-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.2.0/flower-pet-0.2.0-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.2.0/flower-pet-0.2.0-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-win-x64.exe"
   }
  }
 }
