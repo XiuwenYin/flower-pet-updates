@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261121.0010",
+  "version": "20261121.1307",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "c76a0894721242c969dfec9cd93ea914bbd8ea97af541189ee8e9b0e821b8e51",
-    "size": 77499
+    "sha256": "78a47b2719164625f99f2936cbdeae448613c71cc3e29b8892140eaf9147bbed",
+    "size": 85713
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -1134,12 +1134,12 @@
   }
  },
  "shell": {
-  "version": "0.3.0",
-  "notes": "",
+  "version": "0.4.0",
+  "notes": "设置改为面板，右键单击花瓶即可打开；长按时显示进度；新版本提示显示在花瓶旁。",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.3.0/flower-pet-0.3.0-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.0/flower-pet-0.4.0-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.0/flower-pet-0.4.0-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.0/flower-pet-0.4.0-win-x64.exe"
   }
  }
 }
