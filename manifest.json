@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261121.1856",
+  "version": "20261122.0014",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "a669ee00c19d7fed6c2e0f06c598bce127aca22a3cb20e2e034fefad6099494c",
-    "size": 88313
+    "sha256": "779c895a66f5dae48bb99c49213e56f57c63077d4e76fcfc0fd44ba26b5d1be2",
+    "size": 91305
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -1134,12 +1134,12 @@
   }
  },
  "shell": {
-  "version": "0.4.1",
-  "notes": "减少内存占用：长时间运行不再累积图片，设置面板关闭后释放；降低绘制开销。",
+  "version": "0.4.2",
+  "notes": "可以按住花束拖动位置；右键单击花束任意位置打开设置；默认只在桌面上显示，不遮挡其他程序；修复设置面板点击后移位、反应慢和打开时闪烁；花的颜色不再发淡。",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.1/flower-pet-0.4.1-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.1/flower-pet-0.4.1-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.1/flower-pet-0.4.1-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.2/flower-pet-0.4.2-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.2/flower-pet-0.4.2-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.2/flower-pet-0.4.2-win-x64.exe"
   }
  }
 }
