@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261122.1919",
+  "version": "20261122.2326",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "5c59693179d69b0235ed4b5d112de61e2849b3fa04cc0df03390d35c6f9b2751",
-    "size": 93517
+    "sha256": "db84d0f7e7cf4942b80edc0259084ebd148356db87d01bcb89ef4332216028ff",
+    "size": 96370
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -283,6 +283,34 @@
     "sha256": "e0edf4f1af063ddd721017d378a53e204ec8fcdabf30e0243a3f317418d1a50f",
     "size": 90834
    },
+   "assets/gard/meta.json": {
+    "sha256": "dfea4c11a72ea86572a65a85405a806b5c615271566883cc506dbb8fc9d0a58b",
+    "size": 744
+   },
+   "assets/gard/s1.webp": {
+    "sha256": "f7bb114e427895aab1a49e47fd1af32bb6514f25beca750c44b68ec86e4de781",
+    "size": 62304
+   },
+   "assets/gard/s2.webp": {
+    "sha256": "459f17f235048b68e15f9be1f2f5547498e7aaa5735e2a6d522b9cbd190f8317",
+    "size": 66552
+   },
+   "assets/gard/s3.webp": {
+    "sha256": "ebe06c7f65d3672875c99211b6f0f0c97cbaf579f34e2f60a1fa61fa03cbea8b",
+    "size": 101136
+   },
+   "assets/gard/s4.webp": {
+    "sha256": "c78366b8d86d8a8663148aa1af3ed29f65650a3b896c65e4da7cda989e163af3",
+    "size": 62564
+   },
+   "assets/gard/s5.webp": {
+    "sha256": "efba1b053c341080f3dfa367b7eed9f4a83aeb38e81963d834fdabe6ffa1cc2e",
+    "size": 194428
+   },
+   "assets/gard/s6.webp": {
+    "sha256": "85041447c99a9b7fd49a3a4fcfc6ab925a6614e5fa92e1dfb0d954b9dec1d1c9",
+    "size": 143296
+   },
    "assets/hell/meta.json": {
     "sha256": "e6f7fb3357fb4488caba438b86cbb650c45e98407e148eda79398a0ead84807c",
     "size": 740
@@ -543,6 +571,14 @@
     "sha256": "7efb9c3838292cad4682d24423c66102f802d65ab06f520f9a10f35cf9dadc29",
     "size": 56226
    },
+   "assets/kit/line_jacar.webp": {
+    "sha256": "0829d453eb6dbba906df0fd6e666f55e7c92632f9c18dc3fb99153d6a425cbf1",
+    "size": 89618
+   },
+   "assets/kit/line_jacar_w.webp": {
+    "sha256": "6f0a5d18d41497ccf7e0f9a74799c072844d45ab0f81aa83b1b6e3ea6f4c9b5e",
+    "size": 171916
+   },
    "assets/kit/line_snap.webp": {
     "sha256": "a704eddc3d8c71bcd46417b3be1615f82cf3f553208b9a00880f9191c88c0aef",
     "size": 68056
@@ -552,8 +588,8 @@
     "size": 43246
    },
    "assets/kit/meta.json": {
-    "sha256": "2f39332f77b055eca972cda72167640df2e25a560e5781fb7e0d70fa71a154b2",
-    "size": 11158
+    "sha256": "de106de1e1296e8090e008ddeb91f7be9a9d8fc647116c0f1b32a8df2da18576",
+    "size": 11480
    },
    "assets/kit/petal1.webp": {
     "sha256": "df08df77a560c80f8818629a0d71514eef891c201ded64f16ac52b96a961d3da",
@@ -610,6 +646,10 @@
    "assets/kit/stem_frees.webp": {
     "sha256": "7685fd191e68b4b18ebcb98cf300a58cec175ba5fb4e484ac743e4f4f3776582",
     "size": 32674
+   },
+   "assets/kit/stem_gard.webp": {
+    "sha256": "d70b2026052a284970456cde4ac5d9f4385f6c4c5606ba57bb6512bd265b0d91",
+    "size": 76414
    },
    "assets/kit/stem_hell.webp": {
     "sha256": "6065bd284469c6600add1242e3df7eaa5bfb4efd1679a58e975f29de6e40a1ee",
