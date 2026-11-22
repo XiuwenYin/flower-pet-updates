@@ -1134,17 +1134,17 @@
   }
  },
  "shell": {
-  "version": "0.4.4",
-  "notes": "右键单击花束更容易点中：花与花之间的空隙也能打开设置；修复 Mac 上指针停在花上时有时点不开设置。",
+  "version": "0.5.0",
+  "notes": "国内下载和更新改用国内服务器，速度更快；Windows 上自动更新更稳定。",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.0/flower-pet-0.5.0-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.0/flower-pet-0.5.0-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.0/flower-pet-0.5.0-win-x64.exe"
   },
   "sha256": {
-   "darwin-arm64": "1a95555e7726a29cc04693956c280613e3e7f2d16458a64eff2ff1f5870064c4",
-   "darwin-x64": "d15be5f9b49d7080dd6c16c2e97af8d343a1abfeb5e5959012231fced661fa0c",
-   "win32-x64": "90a7e0a0115f60a2cda8e2a3a91ae20ec3d489846ad9b90fc5cb00eace1e43f0"
+   "darwin-arm64": "f714e2697d95f8bc750647106a0399ff9375b7489e2a071d7864cae3a0d947c1",
+   "darwin-x64": "96f7a484cbb3dc7ce408e62f0039fde19a846c1a0e9cee004bf6ddf11d002d28",
+   "win32-x64": "61798ef6786e96ca75d5b5f816770f884e845f347bbbd9af08e1b74825b250dd"
   }
  }
 }

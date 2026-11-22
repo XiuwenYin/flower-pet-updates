@@ -24,6 +24,8 @@
   .tip { margin:12px 0 0; font-size:13px; color:var(--muted) }
   .notes { margin:22px 0 0; padding-top:18px; border-top:1px solid var(--line); font-size:13.5px }
   .notes b { display:block; font-weight:600; margin-bottom:4px }
+  .alt { margin:8px 0 0; font-size:13px; text-align:center }
+  .alt a { color:var(--muted) }
   .other { margin:20px 0 0; font-size:13px; color:var(--muted) }
   .other a { color:var(--ink); margin-right:14px }
   .cmd { margin:16px 0 0; font-size:13px; color:var(--muted) }
@@ -40,6 +42,7 @@
   <p class="sys" id="sys"></p>
   <a class="btn" id="btn" hidden></a>
   <p class="tip" id="tip" hidden></p>
+  <p class="alt"><a id="alt" hidden>备用下载地址</a></p>
   <div class="cmd" id="cmd" hidden>也可以在「终端」里运行这行命令安装，打开时不会被拦：<div><code id="cmdT"></code><button id="copy">复制</button></div></div>
   <div class="notes" id="notes" hidden><b>本版更新</b><span id="notesT"></span></div>
   <p class="other" id="other"></p>
@@ -47,10 +50,20 @@
 <script>
 const BTN = { 'darwin-arm64': '下载 Apple 芯片版', 'darwin-x64': '下载 Intel 芯片版', 'win32-x64': '下载 Windows 版' };
 const NAMES = { 'darwin-arm64': 'Mac（Apple 芯片）', 'darwin-x64': 'Mac（Intel 芯片）', 'win32-x64': 'Windows' };
-const TIPS = {
-  darwin: '把瓶中花拖进「应用程序」后打开。如提示无法验证开发者，打开「系统设置 › 隐私与安全性」，在页面下方点「仍要打开」。',
-  win32: '如出现「Windows 已保护你的电脑」，点「更多信息」，再点「仍要运行」。'
-};
+const TIPS = { darwin: '把瓶中花拖进「应用程序」后打开。如提示无法验证开发者，打开「系统设置 › 隐私与安全性」，在页面下方点「仍要打开」。', win32: '如出现「Windows 已保护你的电脑」，点「更多信息」，再点「仍要运行」。' };
+// 更新源：标了 bin 的（国内镜像）上有安装包，放在 releases/v版本/文件名
+const FEEDS = [{"url":"https://yqkjtech.com/flower/","bin":true},{"url":"https://xiuwenyin.github.io/flower-pet-updates/","bin":false}];
+const here = FEEDS.find(f => location.href.startsWith(f.url));
+const mirror = FEEDS.find(f => f.bin);
+// 在国内（按时区判断）时优先用镜像
+const inCN = /^Asia\/(Shanghai|Chongqing|Harbin|Urumqi|Chungking)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+const nameOf = u => decodeURIComponent(new URL(u).pathname.split('/').pop());
+// 某个平台的下载地址：[首选, 备用]
+function links(s, key) {
+  const gh = s.files[key], mu = mirror && `${mirror.url}releases/v${s.version}/${nameOf(gh)}`;
+  if (!mu) return [gh];
+  return (here && here.bin) || inCN ? [mu, gh] : [gh, mu];
+}
 async function detect() {
   const ua = navigator.userAgent;
   if (/iPhone|iPad|Android/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return null;
@@ -75,17 +88,19 @@ async function detect() {
   const sys = document.getElementById('sys'), btn = document.getElementById('btn'), tip = document.getElementById('tip');
   if (me && s.files[me.key]) {
     sys.innerHTML = '你的电脑：<b>' + (me.sure ? NAMES[me.key] : 'Mac') + '</b>';
-    btn.href = s.files[me.key]; btn.textContent = BTN[me.key]; btn.hidden = false;
+    const [a, b] = links(s, me.key);
+    btn.href = a; btn.textContent = BTN[me.key]; btn.hidden = false;
+    if (b) { const alt = document.getElementById('alt'); alt.href = b; alt.hidden = false; }
     tip.textContent = TIPS[me.key.split('-')[0]]; tip.hidden = false;
     if (me.key.startsWith('darwin')) {
-      const c = 'curl -fsSL ' + new URL('install.sh', location.href) + ' | sh';
+      const c = 'curl -fsSL ' + new URL('install.sh', inCN && mirror ? mirror.url : location.href) + ' | sh';
       document.getElementById('cmdT').textContent = c; document.getElementById('cmd').hidden = false;
       const b = document.getElementById('copy');
       b.onclick = () => navigator.clipboard.writeText(c).then(() => { b.textContent = '已复制'; setTimeout(() => b.textContent = '复制', 1500); });
     }
   } else sys.textContent = '瓶中花支持 Mac 和 Windows 电脑，请在电脑上打开本页下载。';
   document.getElementById('other').innerHTML = (me ? '其他版本：' : '') +
-    Object.keys(NAMES).filter(k => s.files[k] && (!me || k !== me.key)).map(k => `<a href="${s.files[k]}">${NAMES[k]}</a>`).join('');
+    Object.keys(NAMES).filter(k => s.files[k] && (!me || k !== me.key)).map(k => `<a href="${links(s, k)[0]}">${NAMES[k]}</a>`).join('');
 })();
 </script>
 </body>
