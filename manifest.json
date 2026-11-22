@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261122.0014",
+  "version": "20261122.1220",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "779c895a66f5dae48bb99c49213e56f57c63077d4e76fcfc0fd44ba26b5d1be2",
-    "size": 91305
+    "sha256": "5f82675561704573823555e457cfb5593cec1d3f9201217c997dec2603b78d33",
+    "size": 91016
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
