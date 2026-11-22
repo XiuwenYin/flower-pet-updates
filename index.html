@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>瓶中花 · 下载</title>
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg:#f4f1ea; --card:#fffdf8; --ink:#2b2824; --muted:#857d72; --line:#e4ddd0; --acc:#8c3b2f; --acc-ink:#fff }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1d1b19; --card:#262320; --ink:#eee8de; --muted:#a39a8d; --line:#3a3530; --acc:#c06a58; --acc-ink:#1d1b19 } }
+  * { box-sizing:border-box }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
+    background:var(--bg); color:var(--ink); font:15px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif }
+  main { width:100%; max-width:420px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:32px 28px 26px }
+  .head { display:flex; align-items:center; gap:14px }
+  .head img { width:56px; height:56px; border-radius:12px }
+  h1 { margin:0; font-size:22px; font-weight:600 }
+  .ver { color:var(--muted); font-size:13px }
+  .sys { margin:26px 0 10px; font-size:14px; color:var(--muted) }
+  .sys b { color:var(--ink); font-weight:600 }
+  .btn { display:block; text-align:center; padding:12px 16px; border-radius:10px; background:var(--acc); color:var(--acc-ink);
+    text-decoration:none; font-weight:600; font-size:16px }
+  .btn:hover { filter:brightness(1.06) }
+  .tip { margin:12px 0 0; font-size:13px; color:var(--muted) }
+  .notes { margin:22px 0 0; padding-top:18px; border-top:1px solid var(--line); font-size:13.5px }
+  .notes b { display:block; font-weight:600; margin-bottom:4px }
+  .other { margin:20px 0 0; font-size:13px; color:var(--muted) }
+  .other a { color:var(--ink); margin-right:14px }
+  [hidden] { display:none !important }
+</style>
+</head>
+<body>
+<main>
+  <div class="head"><img src="icon.png" alt=""><div><h1>瓶中花</h1><div class="ver" id="ver"></div></div></div>
+  <p class="sys" id="sys"></p>
+  <a class="btn" id="btn" hidden></a>
+  <p class="tip" id="tip" hidden></p>
+  <div class="notes" id="notes" hidden><b>本版更新</b><span id="notesT"></span></div>
+  <p class="other" id="other"></p>
+</main>
+<script>
+const BTN = { 'darwin-arm64': '下载 Apple 芯片版', 'darwin-x64': '下载 Intel 芯片版', 'win32-x64': '下载 Windows 版' };
+const NAMES = { 'darwin-arm64': 'Mac（Apple 芯片）', 'darwin-x64': 'Mac（Intel 芯片）', 'win32-x64': 'Windows' };
+const TIPS = {
+  darwin: '把瓶中花拖进「应用程序」后打开。如提示无法验证开发者，打开「系统设置 › 隐私与安全性」，在页面下方点「仍要打开」。',
+  win32: '如出现「Windows 已保护你的电脑」，点「更多信息」，再点「仍要运行」。'
+};
+async function detect() {
+  const ua = navigator.userAgent;
+  if (/iPhone|iPad|Android/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return null;
+  if (/Windows/.test(ua)) return { key: 'win32-x64', sure: true };
+  if (!/Macintosh|Mac OS X/.test(ua)) return null;
+  try {
+    const h = await navigator.userAgentData?.getHighEntropyValues?.(['architecture']);
+    if (h?.architecture) return { key: h.architecture === 'arm' ? 'darwin-arm64' : 'darwin-x64', sure: true };
+  } catch (e) { }
+  try {
+    const gl = document.createElement('canvas').getContext('webgl'), ext = gl.getExtension('WEBGL_debug_renderer_info');
+    const r = String(gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER));
+    if (/Apple M\d/.test(r)) return { key: 'darwin-arm64', sure: true };
+    if (/Intel|AMD|Radeon|NVIDIA/i.test(r)) return { key: 'darwin-x64', sure: true };
+  } catch (e) { }
+  return { key: 'darwin-arm64', sure: false };   // Safari 不报芯片型号；2020 年以后的 Mac 多是 Apple 芯片
+}
+(async () => {
+  const m = await (await fetch('manifest.json', { cache: 'no-store' })).json(), s = m.shell, me = await detect();
+  document.getElementById('ver').textContent = '版本' + s.version;
+  if (s.notes) { document.getElementById('notesT').textContent = s.notes; document.getElementById('notes').hidden = false; }
+  const sys = document.getElementById('sys'), btn = document.getElementById('btn'), tip = document.getElementById('tip');
+  if (me && s.files[me.key]) {
+    sys.innerHTML = '你的电脑：<b>' + (me.sure ? NAMES[me.key] : 'Mac') + '</b>';
+    btn.href = s.files[me.key]; btn.textContent = BTN[me.key]; btn.hidden = false;
+    tip.textContent = TIPS[me.key.split('-')[0]]; tip.hidden = false;
+  } else sys.textContent = '瓶中花支持 Mac 和 Windows 电脑，请在电脑上打开本页下载。';
+  document.getElementById('other').innerHTML = (me ? '其他版本：' : '') +
+    Object.keys(NAMES).filter(k => s.files[k] && (!me || k !== me.key)).map(k => `<a href="${s.files[k]}">${NAMES[k]}</a>`).join('');
+})();
+</script>
+</body>
+</html>
