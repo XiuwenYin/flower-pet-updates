@@ -26,6 +26,11 @@
   .notes b { display:block; font-weight:600; margin-bottom:4px }
   .other { margin:20px 0 0; font-size:13px; color:var(--muted) }
   .other a { color:var(--ink); margin-right:14px }
+  .cmd { margin:16px 0 0; font-size:13px; color:var(--muted) }
+  .cmd div { display:flex; gap:8px; margin-top:6px }
+  .cmd code { flex:1; min-width:0; overflow-x:auto; white-space:nowrap; padding:8px 10px; border:1px solid var(--line); border-radius:8px;
+    font:12px/1.5 ui-monospace, Menlo, monospace; color:var(--ink) }
+  .cmd button { flex:none; padding:0 12px; border:1px solid var(--line); border-radius:8px; background:none; color:var(--ink); font:inherit; cursor:pointer }
   [hidden] { display:none !important }
 </style>
 </head>
@@ -35,6 +40,7 @@
   <p class="sys" id="sys"></p>
   <a class="btn" id="btn" hidden></a>
   <p class="tip" id="tip" hidden></p>
+  <div class="cmd" id="cmd" hidden>也可以在「终端」里运行这行命令安装，打开时不会被拦：<div><code id="cmdT"></code><button id="copy">复制</button></div></div>
   <div class="notes" id="notes" hidden><b>本版更新</b><span id="notesT"></span></div>
   <p class="other" id="other"></p>
 </main>
@@ -71,6 +77,12 @@ async function detect() {
     sys.innerHTML = '你的电脑：<b>' + (me.sure ? NAMES[me.key] : 'Mac') + '</b>';
     btn.href = s.files[me.key]; btn.textContent = BTN[me.key]; btn.hidden = false;
     tip.textContent = TIPS[me.key.split('-')[0]]; tip.hidden = false;
+    if (me.key.startsWith('darwin')) {
+      const c = 'curl -fsSL ' + new URL('install.sh', location.href) + ' | sh';
+      document.getElementById('cmdT').textContent = c; document.getElementById('cmd').hidden = false;
+      const b = document.getElementById('copy');
+      b.onclick = () => navigator.clipboard.writeText(c).then(() => { b.textContent = '已复制'; setTimeout(() => b.textContent = '复制', 1500); });
+    }
   } else sys.textContent = '瓶中花支持 Mac 和 Windows 电脑，请在电脑上打开本页下载。';
   document.getElementById('other').innerHTML = (me ? '其他版本：' : '') +
     Object.keys(NAMES).filter(k => s.files[k] && (!me || k !== me.key)).map(k => `<a href="${s.files[k]}">${NAMES[k]}</a>`).join('');
