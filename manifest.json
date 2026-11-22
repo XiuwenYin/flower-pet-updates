@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261122.1711",
+  "version": "20261122.1919",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "4d5f9af2ede35c138313aeedf9e08d249819b07f0465c179dded802dda7edef8",
-    "size": 92139
+    "sha256": "5c59693179d69b0235ed4b5d112de61e2849b3fa04cc0df03390d35c6f9b2751",
+    "size": 93517
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -1134,17 +1134,17 @@
   }
  },
  "shell": {
-  "version": "0.4.3",
-  "notes": "点「更新」会自动下载并安装新版本，不用再手动下载；Mac 上默认放在左下角；设置面板里可以再次显示今日花笺；右键单击玻璃花瓶也能打开设置；修复设置面板点花后不关闭。",
+  "version": "0.4.4",
+  "notes": "右键单击花束更容易点中：花与花之间的空隙也能打开设置；修复 Mac 上指针停在花上时有时点不开设置。",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.3/flower-pet-0.4.3-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.3/flower-pet-0.4.3-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.3/flower-pet-0.4.3-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.4.4/flower-pet-0.4.4-win-x64.exe"
   },
   "sha256": {
-   "darwin-arm64": "abd941790708d78fbc1208b0d2655e13b6a3fc29d22a711d3dd8aa19fd87f3e2",
-   "darwin-x64": "0b3ae7e74ec0ab9271f1dfa66c70a05bc1a4ad2ecccb86d22e89e8d4352fe704",
-   "win32-x64": "92523b72eba554f761f3012706199011c1e49cb1a1bc664889fc4b2e9e2927a5"
+   "darwin-arm64": "1a95555e7726a29cc04693956c280613e3e7f2d16458a64eff2ff1f5870064c4",
+   "darwin-x64": "d15be5f9b49d7080dd6c16c2e97af8d343a1abfeb5e5959012231fced661fa0c",
+   "win32-x64": "90a7e0a0115f60a2cda8e2a3a91ae20ec3d489846ad9b90fc5cb00eace1e43f0"
   }
  }
 }
