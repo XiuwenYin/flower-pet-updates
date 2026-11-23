@@ -1,11 +1,11 @@
 {
  "content": {
-  "version": "20261123.1022",
+  "version": "20261123.1431",
   "minShell": "0.1.0",
   "files": {
    "bouquet.html": {
-    "sha256": "8edc963ced463da3bfcc263f131deb6902a21da16e496fc498444c8fc2f84524",
-    "size": 115420
+    "sha256": "0980504edc060cfa8969a5632af057fe345a7f4bd6ddb9c7a03654a2765a7bfe",
+    "size": 127880
    },
    "assets/anem/meta.json": {
     "sha256": "409988ba05957099178df08ccee4a35a485c36b38dc5c98b4b054bc4a2e12541",
@@ -1319,6 +1319,14 @@
     "sha256": "62d3c92737fe9bfe1dedd6ab351357bb9112878bcf55438e71f13a54b3cb8931",
     "size": 77776
    },
+   "assets/poems.json": {
+    "sha256": "ce80e006b57d3c7bcfd4a2e0723944bc9a7ff3a4f7f491c73f4fade9eb8c9a84",
+    "size": 19009
+   },
+   "assets/poems_en.json": {
+    "sha256": "3f542c350194be0f3f93b18051a548d5e85d8cd6d712b87d9319cbcf9aac1b2a",
+    "size": 28368
+   },
    "assets/pong/meta.json": {
     "sha256": "3c9a39bcbd44608cf769e1a4ae3f6f2001de780611f60a16abae5d86e07972f8",
     "size": 740
@@ -1698,17 +1706,18 @@
   }
  },
  "shell": {
-  "version": "0.5.1",
-  "notes": "设置面板新增“季节”，可按所在地选北半球、南半球或热带；花瓶可以选择不再使用。",
+  "version": "0.6.0",
+  "notes": "设置里可以切换语言（中文/English）；花笺每天换一句诗，标出诗名和节气诗。",
+  "notesEn": "Language option in Settings (中文/English); the note card shows a different poem every day.",
   "files": {
-   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.1/flower-pet-0.5.1-arm64.dmg",
-   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.1/flower-pet-0.5.1-x64.dmg",
-   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.5.1/flower-pet-0.5.1-win-x64.exe"
+   "darwin-arm64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.6.0/flower-pet-0.6.0-arm64.dmg",
+   "darwin-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.6.0/flower-pet-0.6.0-x64.dmg",
+   "win32-x64": "https://github.com/XiuwenYin/flower-pet-updates/releases/download/v0.6.0/flower-pet-0.6.0-win-x64.exe"
   },
   "sha256": {
-   "darwin-arm64": "ea04b126de4c32dcfa7e7bd0912b98f72d5f1ec6008cc90181e4f9a56b2a6a5a",
-   "darwin-x64": "8244082634f69dd8a31b208bffa7d63c5a42208e0750e115f8611a68d6d957d5",
-   "win32-x64": "407b3766286fdb6c72cb9000e84c7a5a8236b3ae61ce893c30c502be42b07b14"
+   "darwin-arm64": "4cf49f382058f81201b9a785ac777591ae5a0d111a319a5619c43859d0dcfc2a",
+   "darwin-x64": "1134870bfca1c13479d6762b1d7acdde947e16c121a1c15c72313ce59ac5c999",
+   "win32-x64": "2b516980b85a218730ece756fb30ca8ee4c9e030ac03c9e0aacc49de03464fdd"
   }
  }
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>瓶中花 · 下载</title>
+<title>瓶中花</title>
 <link rel="icon" href="icon.png">
 <style>
   :root { --bg:#f4f1ea; --card:#fffdf8; --ink:#2b2824; --muted:#857d72; --line:#e4ddd0; --acc:#8c3b2f; --acc-ink:#fff }
@@ -42,16 +42,32 @@
   <p class="sys" id="sys"></p>
   <a class="btn" id="btn" hidden></a>
   <p class="tip" id="tip" hidden></p>
-  <p class="alt"><a id="alt" hidden>备用下载地址</a></p>
-  <div class="cmd" id="cmd" hidden>也可以在「终端」里运行这行命令安装，打开时不会被拦：<div><code id="cmdT"></code><button id="copy">复制</button></div></div>
-  <div class="notes" id="notes" hidden><b>本版更新</b><span id="notesT"></span></div>
+  <p class="alt"><a id="alt" hidden></a></p>
+  <div class="cmd" id="cmd" hidden><span id="cmdL"></span><div><code id="cmdT"></code><button id="copy"></button></div></div>
+  <div class="notes" id="notes" hidden><b id="notesL"></b><span id="notesT"></span></div>
   <p class="other" id="other"></p>
 </main>
 <script>
-const BTN = { 'darwin-arm64': '下载 Apple 芯片版', 'darwin-x64': '下载 Intel 芯片版', 'win32-x64': '下载 Windows 版' };
-const NAMES = { 'darwin-arm64': 'Mac（Apple 芯片）', 'darwin-x64': 'Mac（Intel 芯片）', 'win32-x64': 'Windows' };
-const TIPS = { darwin: '把瓶中花拖进「应用程序」后打开。如提示无法验证开发者，打开「系统设置 › 隐私与安全性」，在页面下方点「仍要打开」。', win32: '如出现「Windows 已保护你的电脑」，点「更多信息」，再点「仍要运行」。' };
-// 更新源：标了 bin 的（国内镜像）上有安装包，放在 releases/v版本/文件名
+// 浏览器语言是中文时用中文，其余用英文
+const ZH = /^zh/i.test(navigator.language || '');
+const T = ZH ? {
+  name: '瓶中花', title: '瓶中花 · 下载', ver: '版本', you: '你的电脑：', other: '其他版本：', alt: '备用下载地址', notes: '本版更新',
+  cmd: '也可以在“终端”里运行这行命令安装，打开时不会被拦：', copy: '复制', copied: '已复制', none: '瓶中花支持Mac和Windows电脑，请在电脑上打开本页下载。',
+  btn: { 'darwin-arm64': '下载Apple芯片版', 'darwin-x64': '下载Intel芯片版', 'win32-x64': '下载Windows版' },
+  names: { 'darwin-arm64': 'Mac（Apple芯片）', 'darwin-x64': 'Mac（Intel芯片）', 'win32-x64': 'Windows' },
+  tips: { darwin: '把瓶中花拖进「应用程序」后打开。如提示无法验证开发者，打开「系统设置 › 隐私与安全性」，在页面下方点「仍要打开」。', win32: '如出现「Windows 已保护你的电脑」，点「更多信息」，再点「仍要运行」。' },
+} : {
+  name: 'Flowers in a Vase', title: 'Download Flowers in a Vase', ver: 'Version ', you: 'Your computer: ', other: 'Other versions: ', alt: 'Alternative download link', notes: 'What’s new',
+  cmd: 'Or install it by running this command in Terminal, which avoids the security prompt:', copy: 'Copy', copied: 'Copied', none: 'Flowers in a Vase runs on Mac and Windows. Open this page on your computer to download it.',
+  btn: { 'darwin-arm64': 'Download for Apple silicon', 'darwin-x64': 'Download for Intel Mac', 'win32-x64': 'Download for Windows' },
+  names: { 'darwin-arm64': 'Mac (Apple silicon)', 'darwin-x64': 'Mac (Intel)', 'win32-x64': 'Windows' },
+  tips: { darwin: 'Drag Flowers in a Vase into Applications, then open it. If macOS says it can’t verify the developer, open System Settings › Privacy & Security and click “Open Anyway” near the bottom.', win32: 'If you see “Windows protected your PC”, click “More info”, then “Run anyway”.' },
+};
+const BTN = T.btn, NAMES = T.names, TIPS = T.tips;
+document.documentElement.lang = ZH ? 'zh-CN' : 'en'; document.title = T.title;
+document.querySelector('h1').textContent = T.name; document.getElementById('alt').textContent = T.alt;
+document.getElementById('cmdL').textContent = T.cmd; document.getElementById('copy').textContent = T.copy; document.getElementById('notesL').textContent = T.notes;
+// 更新源：标了bin的（国内镜像）上有安装包，放在releases/v版本/文件名
 const FEEDS = [{"url":"https://yqkjtech.com/flower/","bin":true},{"url":"https://xiuwenyin.github.io/flower-pet-updates/","bin":false}];
 const here = FEEDS.find(f => location.href.startsWith(f.url));
 const mirror = FEEDS.find(f => f.bin);
@@ -79,15 +95,16 @@ async function detect() {
     if (/Apple M\d/.test(r)) return { key: 'darwin-arm64', sure: true };
     if (/Intel|AMD|Radeon|NVIDIA/i.test(r)) return { key: 'darwin-x64', sure: true };
   } catch (e) { }
-  return { key: 'darwin-arm64', sure: false };   // Safari 不报芯片型号；2020 年以后的 Mac 多是 Apple 芯片
+  return { key: 'darwin-arm64', sure: false };   // Safari不报芯片型号；2020年以后的Mac多是Apple芯片
 }
 (async () => {
   const m = await (await fetch('manifest.json', { cache: 'no-store' })).json(), s = m.shell, me = await detect();
-  document.getElementById('ver').textContent = '版本' + s.version;
-  if (s.notes) { document.getElementById('notesT').textContent = s.notes; document.getElementById('notes').hidden = false; }
+  document.getElementById('ver').textContent = T.ver + s.version;
+  const notes = ZH ? s.notes : s.notesEn;
+  if (notes) { document.getElementById('notesT').textContent = notes; document.getElementById('notes').hidden = false; }
   const sys = document.getElementById('sys'), btn = document.getElementById('btn'), tip = document.getElementById('tip');
   if (me && s.files[me.key]) {
-    sys.innerHTML = '你的电脑：<b>' + (me.sure ? NAMES[me.key] : 'Mac') + '</b>';
+    sys.innerHTML = T.you + '<b>' + (me.sure ? NAMES[me.key] : 'Mac') + '</b>';
     const [a, b] = links(s, me.key);
     btn.href = a; btn.textContent = BTN[me.key]; btn.hidden = false;
     if (b) { const alt = document.getElementById('alt'); alt.href = b; alt.hidden = false; }
@@ -96,10 +113,10 @@ async function detect() {
       const c = 'curl -fsSL ' + new URL('install.sh', inCN && mirror ? mirror.url : location.href) + ' | sh';
       document.getElementById('cmdT').textContent = c; document.getElementById('cmd').hidden = false;
       const b = document.getElementById('copy');
-      b.onclick = () => navigator.clipboard.writeText(c).then(() => { b.textContent = '已复制'; setTimeout(() => b.textContent = '复制', 1500); });
+      b.onclick = () => navigator.clipboard.writeText(c).then(() => { b.textContent = T.copied; setTimeout(() => b.textContent = T.copy, 1500); });
     }
-  } else sys.textContent = '瓶中花支持 Mac 和 Windows 电脑，请在电脑上打开本页下载。';
-  document.getElementById('other').innerHTML = (me ? '其他版本：' : '') +
+  } else sys.textContent = T.none;
+  document.getElementById('other').innerHTML = (me ? T.other : '') +
     Object.keys(NAMES).filter(k => s.files[k] && (!me || k !== me.key)).map(k => `<a href="${links(s, k)[0]}">${NAMES[k]}</a>`).join('');
 })();
 </script>
